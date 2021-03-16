@@ -6,4 +6,21 @@ response = requests.post(
     headers={'Authorization':'Basic ZGV2bmV0dXNlcjpDaXNjbzEyMyE='})
 response.raise_for_status()
 payload=response.json()
-pprint(payload)
+#pprint(payload)
+
+Token = payload['Token']
+response = requests.get('https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device', headers={'X-Auth-Token': Token})
+data = response.json()['response']
+#print(data)
+
+Table = [['family', 'hostname', 'managementIpAddress', 'lastUpdated', 'reachabilityStatus']]
+for device in data:
+    family = device['family']
+    hostname = device['hostname']
+    managementIpAddress = device['managementIpAddress']
+    lastUpdated = device['lastUpdated']
+    reachabilityStatus = device['reachabilityStatus']
+    Table.append([family, hostname, managementIpAddress, lastUpdated, reachabilityStatus])
+
+for row in Table:
+    print(row)
