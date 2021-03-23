@@ -4,8 +4,6 @@ import time
 import json
 
 FILE_NAME = 'status.json'
-FILE_DIR = r'C:\Users\Eisler Aguilar\Documents\USB\Electronica\EC5756 - Redes definidas por software\Tareas\Tarea 8\asig7y8'
-os.chdir(FILE_DIR)
 
 response = requests.post(
     'https://sandboxdnac.cisco.com/dna/system/api/v1/auth/token',
